@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
             Product p = _context.Add(productDto).Entity;
             _context.SaveChanges();
 
-            return Ok(p);
+            return Ok();
         }
 
         // [HttpPut]
@@ -112,7 +112,7 @@ namespace WebAPI.Controllers
             _context.Entry(p).CurrentValues.SetValues(product);
             _context.SaveChanges();
 
-            return Ok(product);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -126,7 +126,7 @@ namespace WebAPI.Controllers
 
             _context.Remove(p);
             _context.SaveChanges();
-            return Ok($"Delete successfully product id {id}");
+            return Ok();
         }
     }
 }

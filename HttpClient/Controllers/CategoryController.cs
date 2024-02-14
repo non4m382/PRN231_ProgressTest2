@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCategory(int? id)
         {
-            return Ok(_context.Categories.Where(c => c.CategoryId == id).ToList());
+            return Ok(_context.Categories.FirstOrDefault(c => c.CategoryId == id));
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             Category d = _context.Add(c).Entity;
             _context.SaveChanges();
 
-            return Ok(d);
+            return Ok();
         }
 
         [HttpPut]
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
 
             c.CategoryName = category.CategoryName;
             _context.SaveChanges();
-            return Ok(c);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
 
             _context.Remove(c);
             _context.SaveChanges();
-            return Ok(c);
+            return Ok();
         }
     }
 }
