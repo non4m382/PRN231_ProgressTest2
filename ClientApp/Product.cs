@@ -1,6 +1,6 @@
 ﻿namespace WebAPI.Models
 {
-    public partial class Product
+    internal class Product
     {
         public Product()
         {
