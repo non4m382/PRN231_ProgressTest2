@@ -1,17 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ClientApp.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
+using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Net.Http.Json;
 using System.Text;
-using System.Threading.Tasks;
 using WebAPI.Models;
 
-namespace ClientApp
+namespace ClientApp.Manager
 {
-    internal class Manager
+    internal class HttpClientManager
     {
         private const string LinkCategory = "http://localhost:5250/api/Category";
         private const string LinkProduct = "http://localhost:5250/api/Product";
@@ -268,7 +265,7 @@ namespace ClientApp
                         string data = await content.ReadAsStringAsync();
                         // Console.WriteLine(data);
                         Category list = JsonConvert.DeserializeObject<Category>(data);
-                            Console.WriteLine(list.CategoryId + "\t" + list.CategoryName);
+                        Console.WriteLine(list.CategoryId + "\t" + list.CategoryName);
                     }
                 }
             }

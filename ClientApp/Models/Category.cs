@@ -1,4 +1,4 @@
-﻿namespace WebAPI.Models
+﻿namespace ClientApp.Models
 {
     internal class Category
     {
