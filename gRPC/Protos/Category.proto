@@ -5,7 +5,7 @@ option csharp_namespace = "gRPC.Protos";
 service CategoryService {
 	rpc GetCategoryList (Empty) returns (Categories);
 	rpc GetCategory (GetCategoryDetailRequest) returns (CategoryDetail);
-	rpc CreateCategory(CreateCategoryDetailRequest) returns (CategoryDetail);
+	rpc CreateCategory (CreateCategoryDetailRequest) returns (CategoryDetail);
 	rpc UpdateCategory (UpdateCategoryDetailRequest) returns (CategoryDetail);
 	rpc DeleteCategory (DeleteCategoryDetailRequest) returns (DeleteCategoryDetailResponse);
 }
@@ -24,7 +24,7 @@ message UpdateCategoryDetailRequest {
 	CategoryDetail category = 1;
 }
 message DeleteCategoryDetailRequest {
-	int32 productId = 1;
+	int32 categoryId = 1;
 }
 message DeleteCategoryDetailResponse {
 	bool isDelete = 1;

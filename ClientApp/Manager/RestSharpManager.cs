@@ -1,7 +1,6 @@
 ﻿using ClientApp.Models;
 using Newtonsoft.Json;
 using RestSharp;
-using WebAPI.Models;
 
 namespace ClientApp.Manager
 {

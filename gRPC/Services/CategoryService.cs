@@ -59,5 +59,15 @@ namespace gRPC.Services
             var categoryResult = await _repository.UpdateCategoryAsync(updateCategory);
             return _mapper.Map<CategoryDetail>(categoryResult);
         }
+
+        public override async Task<DeleteCategoryDetailResponse> DeleteCategory(DeleteCategoryDetailRequest request,
+            ServerCallContext context)
+        {
+            var deleteResult = await _repository.DeleteCategoryAsync(request.CategoryId);
+            return new DeleteCategoryDetailResponse()
+            {
+                IsDelete = deleteResult
+            };
+        }
     }
 }
