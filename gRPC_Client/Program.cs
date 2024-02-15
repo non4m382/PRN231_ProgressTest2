@@ -5,10 +5,15 @@ using Grpc.Net.Client;
 
 while (true)
 {
+    Console.WriteLine("\n");
     Console.WriteLine(new string('*', 20));
-    Console.WriteLine("1. Manage Category");
-    Console.WriteLine("2. Manage Product");
+    Console.WriteLine("1. List Category");
+    Console.WriteLine("2. Search Category by Id");
+    Console.WriteLine("3. Add Category");
+    Console.WriteLine("4. Update Category");
+    Console.WriteLine("5. Delete Category by Id");
     Console.WriteLine("0. Exit");
+    Console.WriteLine(new string('*', 20));
     Console.Write("Enter choice: ");
     int option = Convert.ToInt32(Console.ReadLine());
     var channel = GrpcChannel.ForAddress("http://localhost:5134");
@@ -60,6 +65,16 @@ while (true)
             };
             var updateResponse = await client.UpdateCategoryAsync(updateRequest);
             Console.WriteLine(updateResponse.ToString());
+            break;
+        case 5:
+            Console.Write("Enter categoryId: ");
+            int deleteCategoryId = Convert.ToInt32(Console.ReadLine());
+            var deleteRequest = new DeleteCategoryDetailRequest()
+            {
+                CategoryId = deleteCategoryId
+            };
+            var deleteResponse = await client.DeleteCategoryAsync(deleteRequest);
+            Console.WriteLine(deleteResponse.ToString());
             break;
     }
 }

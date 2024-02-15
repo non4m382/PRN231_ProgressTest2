@@ -4,16 +4,15 @@ using Newtonsoft.Json.Linq;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text;
-using WebAPI.Models;
 
 namespace ClientApp.Manager
 {
-    internal class HttpClientManager
+    class HttpClientManager
     {
         private const string LinkCategory = "http://localhost:5250/api/Category";
         private const string LinkProduct = "http://localhost:5250/api/Product";
 
-        public async Task ManageCategoryProduct()
+        public async Task ManageCategory()
         {
             while (true)
             {
@@ -24,11 +23,6 @@ namespace ClientApp.Manager
                 Console.WriteLine("3.Add category to DB");
                 Console.WriteLine("4.Update category by id");
                 Console.WriteLine("5.Delete category by id");
-                Console.WriteLine("6.Show list product");
-                Console.WriteLine("7.Search  by id");
-                Console.WriteLine("8.Add product to DB");
-                Console.WriteLine("9.Update product by id");
-                Console.WriteLine("10.Delete product by id");
                 Console.WriteLine("0.Exit");
                 Console.Write("Enter choice: ");
                 var option = Convert.ToInt32(Console.ReadLine());
@@ -72,20 +66,42 @@ namespace ClientApp.Manager
                             await DeleteCategory(id);
                             break;
                         }
-                    case 6:
+                }
+            }
+        }
+
+        public async Task ManageProduct()
+        {
+            while (true)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(new string('*', 20));
+                Console.WriteLine("1.Show list product");
+                Console.WriteLine("2.Search  by id");
+                Console.WriteLine("3.Add product to DB");
+                Console.WriteLine("4.Update product by id");
+                Console.WriteLine("5.Delete product by id");
+                Console.WriteLine("0.Exit");
+                Console.Write("Enter choice: ");
+                var option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 0:
+                        return;
+                    case 1:
                         {
                             Console.WriteLine("List product");
                             await ShowListProductAsync();
                             break;
                         }
-                    case 7:
+                    case 2:
                         {
                             Console.Write("Enter id: ");
                             var id = Convert.ToInt32(Console.ReadLine());
                             await SearchProductById(id);
                             break;
                         }
-                    case 8:
+                    case 3:
                         {
                             Console.Write("Enter name: ");
                             string name = Console.ReadLine();
@@ -100,7 +116,7 @@ namespace ClientApp.Manager
                             await InsertProduct(name, price, quantity, image, categoryId);
                             break;
                         }
-                    case 9:
+                    case 4:
                         {
                             Console.Write("Enter id: ");
                             int id = Convert.ToInt32(Console.ReadLine());
@@ -126,7 +142,7 @@ namespace ClientApp.Manager
                             await UpdateProduct(p);
                             break;
                         }
-                    case 10:
+                    case 5:
                         {
                             Console.Write("Enter id: ");
                             int id = Convert.ToInt32(Console.ReadLine());
@@ -264,8 +280,11 @@ namespace ClientApp.Manager
                     {
                         string data = await content.ReadAsStringAsync();
                         // Console.WriteLine(data);
-                        Category list = JsonConvert.DeserializeObject<Category>(data);
-                        Console.WriteLine(list.CategoryId + "\t" + list.CategoryName);
+                        List<Category> list = JsonConvert.DeserializeObject<List<Category>>(data);
+                        foreach (Category item in list)
+                        {
+                            Console.WriteLine(item.CategoryId + "\t" + item.CategoryName);
+                        }
                     }
                 }
             }
