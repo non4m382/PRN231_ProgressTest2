@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp", "ClientApp\Clie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcAPI", "gRPC\GrpcAPI.csproj", "{D90E886D-BDDB-475F-B75A-EE66009BDB63}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gRPC", "gRPC\gRPC.csproj", "{D90E886D-BDDB-475F-B75A-EE66009BDB63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gRPC_Client", "gRPC_Client\gRPC_Client.csproj", "{72A125C1-C2A4-4703-BAF9-5024ED8DA51E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
