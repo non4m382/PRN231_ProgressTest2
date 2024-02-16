@@ -229,7 +229,7 @@ namespace ClientApp.Manager
             var response = client.Execute<Category>(request);
 
             if (response.IsSuccessful)
-                Console.WriteLine("Delete success");
+                Console.WriteLine("Delete  success");
             else
                 Console.WriteLine("Delete not success");
         }
@@ -306,9 +306,9 @@ namespace ClientApp.Manager
             var response = client.Execute<Product>(request);
 
             if (response.IsSuccessful)
-                Console.WriteLine("Delete success");
-            else
                 Console.WriteLine("Delete not success");
+            else
+                Console.WriteLine("Delete  success");
         }
     }
 }
