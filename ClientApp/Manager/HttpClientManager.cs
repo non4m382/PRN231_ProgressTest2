@@ -12,6 +12,37 @@ namespace ClientApp.Manager
         private const string LinkCategory = "http://localhost:5250/api/Category";
         private const string LinkProduct = "http://localhost:5250/api/Product";
 
+        public async Task Manage()
+        {
+            while (true)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine(new string('*', 20));
+                Console.WriteLine("1. Manage Category");
+                Console.WriteLine("2. Manage Product");
+                Console.WriteLine("0. Exit");
+                Console.Write("Enter choice: ");
+                var option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 0:
+                        return;
+                    case 1:
+                        {
+                            Console.WriteLine("Manage Category");
+                            await ManageCategory();
+                            break;
+                        }
+                    case 2:
+                        {
+                            Console.Write("Manage Product");
+                            await ManageProduct();
+                            break;
+                        }
+                }
+            }
+        }
+
         public async Task ManageCategory()
         {
             while (true)
