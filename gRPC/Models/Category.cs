@@ -1,6 +1,7 @@
-﻿using WebAPI.Models;
+﻿using System;
+using System.Collections.Generic;
 
-namespace HttpClient.Models
+namespace gRPC.Models
 {
     public partial class Category
     {

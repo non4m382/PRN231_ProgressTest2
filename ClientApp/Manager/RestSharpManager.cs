@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using ClientApp.Models;
+using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAPI.Models;
 
-namespace ClientApp
+namespace ClientApp.Manager
 {
     internal class RestSharpManager
     {
@@ -160,9 +155,9 @@ namespace ClientApp
                             break;
                         }
                 }
-
             }
         }
+
         internal async Task ShowListAsync()
         {
             var client = new RestClient(link);
@@ -173,6 +168,7 @@ namespace ClientApp
             {
                 return;
             }
+
             var list = JsonConvert.DeserializeObject<List<Category>>(response.Content);
 
             foreach (Category item in list)
@@ -194,7 +190,6 @@ namespace ClientApp
 
         internal async Task InsertAsync(string name)
         {
-
             var client = new RestClient(link);
             var request = new RestRequest("", Method.Post);
             request.AddParameter("application/json", JsonConvert.SerializeObject(name), ParameterType.RequestBody);
@@ -208,7 +203,6 @@ namespace ClientApp
 
         internal async Task UpdateAsync(int id, string name)
         {
-
             var client = new RestClient(link);
             var request = new RestRequest("", Method.Put);
             Category ca = new Category()
@@ -253,12 +247,13 @@ namespace ClientApp
             {
                 return;
             }
+
             var list = JsonConvert.DeserializeObject<List<Product>>(response.Content);
 
             foreach (Product item in list)
             {
                 Console.WriteLine(item.ProductId + "\t" + item.ProductName + "\t" + item.UnitPrice
-                    + "\t" + item.UnitsInStock + "\t" + item.Image + "\t" + item.CategoryId);
+                                  + "\t" + item.UnitsInStock + "\t" + item.Image + "\t" + item.CategoryId);
             }
         }
 
@@ -271,12 +266,11 @@ namespace ClientApp
             var response = client.Execute<Product>(request);
             var p = JsonConvert.DeserializeObject<Product>(response.Content);
             Console.WriteLine(p.ProductId + "\t" + p.ProductName + "\t" + p.UnitPrice
-                + "\t" + p.UnitsInStock + "\t" + p.Image + "\t" + p.CategoryId);
+                              + "\t" + p.UnitsInStock + "\t" + p.Image + "\t" + p.CategoryId);
         }
 
         internal async Task InsertProductAsync(Product p)
         {
-
             var client = new RestClient(linkProduct);
             var request = new RestRequest("", Method.Post);
             request.AddParameter("application/json", JsonConvert.SerializeObject(p), ParameterType.RequestBody);
@@ -290,7 +284,6 @@ namespace ClientApp
 
         internal async Task UpdateProductAsync(Product p)
         {
-
             var client = new RestClient(linkProduct);
             var request = new RestRequest("", Method.Put);
 

@@ -1,4 +1,7 @@
-﻿namespace WebAPI.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace gRPC.Models
 {
     public partial class Customer
     {
