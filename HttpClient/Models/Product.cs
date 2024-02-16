@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HttpClient.Models;
 
-namespace HttpClient.Models
+namespace WebAPI.Models
 {
     public partial class Product
     {

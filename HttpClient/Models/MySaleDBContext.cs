@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HttpClient.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace HttpClient.Models
+namespace WebAPI.Models
 {
     public partial class MySaleDBContext : DbContext
     {
