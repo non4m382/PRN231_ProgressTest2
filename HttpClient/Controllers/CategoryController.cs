@@ -33,7 +33,7 @@ namespace WebAPI.Controllers
             Category d = _context.Add(c).Entity;
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(d);
         }
 
         [HttpPut]
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
 
             c.CategoryName = category.CategoryName;
             _context.SaveChanges();
-            return Ok();
+            return Ok(c);
         }
 
         [HttpDelete("{id}")]
@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
 
             _context.Remove(c);
             _context.SaveChanges();
-            return Ok();
+            return Ok(c);
         }
     }
 }
