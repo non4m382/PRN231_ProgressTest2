@@ -74,10 +74,11 @@ namespace WebAPI.Controllers
             //     Category = _context.Categories.FirstOrDefault(c => c.CategoryId == productDto.CategoryId),
             // };
 
+            _context.Products.Include(x => x.Category).ToList();
             Product p = _context.Add(productDto).Entity;
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(p);
         }
 
         // [HttpPut]
@@ -112,7 +113,7 @@ namespace WebAPI.Controllers
             _context.Entry(p).CurrentValues.SetValues(product);
             _context.SaveChanges();
 
-            return Ok();
+            return Ok(product);
         }
 
         [HttpDelete("{id}")]
@@ -126,7 +127,7 @@ namespace WebAPI.Controllers
 
             _context.Remove(p);
             _context.SaveChanges();
-            return Ok();
+            return Ok($"Delete successfully product id {id}");
         }
     }
 }
