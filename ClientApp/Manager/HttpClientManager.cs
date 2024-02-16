@@ -311,11 +311,8 @@ namespace ClientApp.Manager
                     {
                         string data = await content.ReadAsStringAsync();
                         // Console.WriteLine(data);
-                        List<Category> list = JsonConvert.DeserializeObject<List<Category>>(data);
-                        foreach (Category item in list)
-                        {
-                            Console.WriteLine(item.CategoryId + "\t" + item.CategoryName);
-                        }
+                        Category item = JsonConvert.DeserializeObject<Category>(data);
+                        Console.WriteLine(item.CategoryId + "\t" + item.CategoryName);
                     }
                 }
             }
@@ -354,7 +351,7 @@ namespace ClientApp.Manager
             }
 
             string data = await content.ReadAsStringAsync();
-            Console.WriteLine(data);
+            //Console.WriteLine(data);
             Category list = JsonConvert.DeserializeObject<Category>(data);
             Console.WriteLine(list.CategoryId + "\t" + list.CategoryName);
         }

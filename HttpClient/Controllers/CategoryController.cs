@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCategory(int? id)
         {
-            return Ok(_context.Categories.Where(c => c.CategoryId == id).ToList());
+            return Ok(_context.Categories.FirstOrDefault(c => c.CategoryId == id));
         }
 
         [HttpPost]

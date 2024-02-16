@@ -41,7 +41,7 @@ namespace ClientApp.Manager
                         }
                     case 2:
                         {
-                            Console.Write("Manage Product");
+                            Console.WriteLine("Manage Product");
                             await ManageProduct();
                             break;
                         }
@@ -212,8 +212,8 @@ namespace ClientApp.Manager
                 using (System.Net.WebClient webClient = new System.Net.WebClient())
                 {
                     var json = webClient.DownloadString(LinkCategory + "/" + id);
-                    JArray j = JArray.Parse(json);
-                    Console.WriteLine(j);
+                    var result = JsonConvert.DeserializeObject<Category>(json);
+                    Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
                 }
             }
 
