@@ -16,14 +16,33 @@ namespace WcfService
     {
         public string DoWork()
         {
+            //List<Category> categories = new List<Category>();
+            //try
+            //{
+            //    using (var conn = new SqlConnection("server=(local);database=MySaleDB;uid=sa;pwd=123123;TrustServerCertificate=True"))
+            //    {
+            //        conn.Open();
+            //        using (SqlCommand cmd = conn.CreateCommand())
+            //        {
+            //            cmd.CommandText = "SELECT * FROM Categories";
+            //            using (SqlDataReader reader = cmd.ExecuteReader())
+            //            {
+            //                while (reader.Read())
+            //                {
+            //                    Category category = new Category();
+            //                    category.Id = (int)reader["CategoryID"];
+            //                    category.Name = reader["CategoryName"].ToString();
+            //                    categories.Add(category);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new FaultException(ex.Message);
+            //}
             string data = "";
-            MySaleDBEntities context = new MySaleDBEntities();
-            context.Configuration.LazyLoadingEnabled = false;
-            List<Category> categories = context.Categories.ToList();
-            foreach (var c in categories)
-            {
-                data += $"Id: {c.CategoryID}, Name: {c.CategoryName}";
-            }
             return data;
         }
 
@@ -70,7 +89,7 @@ namespace WcfService
                 CategoryName = category.CategoryName
             };
             context.Configuration.ProxyCreationEnabled = false;
-            context.Categories.Add(categoryCreate);
+            category = context.Categories.Add(categoryCreate);
             context.SaveChanges();
             return category;
         }
@@ -78,8 +97,8 @@ namespace WcfService
         public Category Update(Category category)
         {
             MySaleDBEntities context = new MySaleDBEntities();
+            Category categoryUpdate = context.Categories.Find(category.CategoryID);
             context.Configuration.ProxyCreationEnabled = false;
-            Category categoryUpdate = GetCategoryById(category.CategoryID);
             categoryUpdate.CategoryName = category.CategoryName;
             context.SaveChanges();
             return category;
