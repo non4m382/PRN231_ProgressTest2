@@ -8,6 +8,7 @@ namespace ClientApp
         private static readonly HttpClientManager Http = new();
         private static readonly RestSharpManager Rest = new();
         private static readonly GRpcManager GRpc = new();
+        private static readonly ServiceReferenceManager WCF = new();
 
         static async Task Main(string[] args)
         {
@@ -36,6 +37,7 @@ namespace ClientApp
                         await Rest.RestSharpCategoryProduct();
                         break;
                     case 4:
+                        await WCF.Manage();
                         break;
                     case 5:
                         await GRpc.Manage();
