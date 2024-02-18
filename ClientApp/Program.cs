@@ -8,7 +8,7 @@ namespace ClientApp
         private static readonly HttpClientManager Http = new();
         private static readonly RestSharpManager Rest = new();
         private static readonly GRpcManager GRpc = new();
-        private static readonly ServiceReferenceManager WCF = new();
+        private static readonly WCFManager WCF = new();
 
         static async Task Main(string[] args)
         {

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WcfService
+namespace WcfService.Model
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MySaleDBEntities : DbContext
+    public partial class MySaleDBEntities1 : DbContext
     {
-        public MySaleDBEntities()
-            : base("name=MySaleDBEntities")
+        public MySaleDBEntities1()
+            : base("name=MySaleDBEntities1")
         {
         }
     

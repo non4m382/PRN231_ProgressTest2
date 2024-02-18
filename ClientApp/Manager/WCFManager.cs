@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClientApp.Manager
 {
-    internal class ServiceReferenceManager
+    internal class WCFManager
     {
         public async Task Manage()
         {

@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WcfService
+namespace WcfService.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class sysdiagram
     {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
-        public Nullable<decimal> UnitPrice { get; set; }
-        public Nullable<int> UnitsInStock { get; set; }
-        public string Image { get; set; }
-        public Nullable<int> CategoryID { get; set; }
-    
-        public virtual Category Category { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
