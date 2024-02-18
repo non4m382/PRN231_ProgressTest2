@@ -213,7 +213,14 @@ namespace ClientApp.Manager
                 {
                     var json = webClient.DownloadString(LinkCategory + "/" + id);
                     var result = JsonConvert.DeserializeObject<Category>(json);
-                    Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    if (result == null)
+                    {
+                        Console.WriteLine("Not found!");
+                    }
+                    else
+                    {
+                        Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    }
                 }
             }
 
@@ -227,12 +234,29 @@ namespace ClientApp.Manager
                     // Serialize the "name" parameter to JSON
                     string data = JsonConvert.SerializeObject(name);
 
-                    // Make the POST request and upload the JSON data
-                    //var response = webClient.UploadString(LinkCategory, data);
-                    var response = webClient.UploadString(LinkCategory, "POST", data);
+                    try
+                    {
+                        // Make the POST request and upload the JSON data
+                        //var response = webClient.UploadString(LinkCategory, data);
+                        var response = webClient.UploadString(LinkCategory, "POST", data);
 
-                    var result = JsonConvert.DeserializeObject<Category>(response);
-                    Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                        var result = JsonConvert.DeserializeObject<Category>(response);
+                        Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    }
+                    catch (System.Net.WebException ex)
+                    {
+                        if (ex.Response is System.Net.HttpWebResponse errorResponse)
+                        {
+                            if (errorResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                            {
+                                Console.WriteLine("Not found!");
+                            }
+                            else
+                            {
+                                Console.WriteLine(errorResponse.StatusCode);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -244,9 +268,26 @@ namespace ClientApp.Manager
                 {
                     webClient.Headers.Add("Content-Type", "application/json");
                     string data = JsonConvert.SerializeObject(category);
-                    var response = webClient.UploadString(LinkCategory, "PUT", data);
-                    var result = JsonConvert.DeserializeObject<Category>(response);
-                    Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    try
+                    {
+                        var response = webClient.UploadString(LinkCategory, "PUT", data);
+                        var result = JsonConvert.DeserializeObject<Category>(response);
+                        Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    }
+                    catch (System.Net.WebException ex)
+                    {
+                        if (ex.Response is System.Net.HttpWebResponse errorResponse)
+                        {
+                            if (errorResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                            {
+                                Console.WriteLine("Not found!");
+                            }
+                            else
+                            {
+                                Console.WriteLine(errorResponse.StatusCode);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -254,9 +295,26 @@ namespace ClientApp.Manager
             {
                 using (System.Net.WebClient webClient = new System.Net.WebClient())
                 {
-                    var json = webClient.UploadString(LinkCategory + "/" + id, "DELETE", "");
-                    var result = JsonConvert.DeserializeObject<Category>(json);
-                    Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    try
+                    {
+                        var json = webClient.UploadString(LinkCategory + "/" + id, "DELETE", "");
+                        var result = JsonConvert.DeserializeObject<Category>(json);
+                        Console.WriteLine(result.CategoryId + "\t" + result.CategoryName);
+                    }
+                    catch (System.Net.WebException ex)
+                    {
+                        if (ex.Response is System.Net.HttpWebResponse errorResponse)
+                        {
+                            if (errorResponse.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                            {
+                                Console.WriteLine("Not found!");
+                            }
+                            else
+                            {
+                                Console.WriteLine(errorResponse.StatusCode);
+                            }
+                        }
+                    }
                 }
             }
         }
